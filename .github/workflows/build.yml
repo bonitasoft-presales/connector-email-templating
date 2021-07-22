@@ -37,8 +37,8 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: "${{ steps.get-version.outputs.final-name }}.zip"
-          path: "target/${{ steps.get-version.outputs.final-name }}.zip"
+          name: "${{ steps.get-version.outputs.final-name }}-all.zip"
+          path: "target/${{ steps.get-version.outputs.final-name }}-all.zip"
 
       - name: Set up Java for publishing to GitHub Packages
         uses: actions/setup-java@v2

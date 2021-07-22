@@ -107,8 +107,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: target/${{ steps.get-version.outputs.final-name }}.zip
-          asset_name: ${{ steps.get-version.outputs.final-name }}.zip
+          asset_path: target/${{ steps.get-version.outputs.final-name }}-all.zip
+          asset_name: ${{ steps.get-version.outputs.final-name }}-all.zip
           asset_content_type: application/zip
 
       - name: Set up Java for publishing to GitHub Packages
