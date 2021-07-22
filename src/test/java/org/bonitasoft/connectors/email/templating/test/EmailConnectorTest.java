@@ -158,10 +158,6 @@ public class EmailConnectorTest {
     assertEquals(0, mime.getSize());
   }
 
-  //    @Cover(classes = { EmailConnector.class }, concept = BPMNConcept.CONNECTOR, keywords = {
-  // "email" },
-  //            story = "Test the sending of a email with field from filled through the connector",
-  // jira = "")
   @Test
   public void testSendEmailWithFromAddress() throws Exception {
     final Map<String, Object> parameters = getBasicSettings();
@@ -177,10 +173,6 @@ public class EmailConnectorTest {
     assertEquals(0, mime.getSize());
   }
 
-  //    @Cover(classes = { EmailConnector.class }, concept = BPMNConcept.CONNECTOR, keywords = {
-  // "email" },
-  //            story = "Test the sending of a email with authentification through the connector",
-  // jira = "")
   @Test
   public void testSendEmailWithAutentication() throws Exception {
     final Map<String, Object> parameters = getBasicSettings();
@@ -197,7 +189,6 @@ public class EmailConnectorTest {
     assertEquals(0, mime.getSize());
   }
 
-  // BI-284 - [6.0.2] Email connector fails if one header row is empty
   @Test
   public void connector_dont_fail_if_an_header_line_contains_only_one_element() throws Exception {
     List<List<Object>> headers = new ArrayList<List<Object>>();

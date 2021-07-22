@@ -3,12 +3,6 @@ package org.bonitasoft.connectors.email.templating;
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 
-/**
- * The class SMTPAuthenticator represents an object that knows how to obtain authentication for a
- * network connection with an SMTP server.
- *
- * @author chaffotm
- */
 public class SMTPAuthenticator extends Authenticator {
   /** The user name used for authentication. */
   private final String userName;
