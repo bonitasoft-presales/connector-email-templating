@@ -41,10 +41,10 @@ jobs:
           path: "target/${{ steps.get-version.outputs.final-name }}.zip"
 
       - name: Set up Java for publishing to GitHub Packages
-          uses: actions/setup-java@v2
-          with:
-            java-version: '11'
-            distribution: 'adopt'
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
 
       - name: Publish package
         run: ./mvnw --batch-mode deploy
