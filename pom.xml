@@ -237,6 +237,11 @@
         <tag>HEAD</tag>
     </scm>
     <distributionManagement>
+        <snapshotRepository>
+            <id>github</id>
+            <name>Github Package</name>
+            <url>https://maven.pkg.github.com/laurentleseigneur/bonita-connector-email-templating</url>
+        </snapshotRepository>
         <repository>
             <id>github</id>
             <name>Github Package</name>
