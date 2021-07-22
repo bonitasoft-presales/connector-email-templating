@@ -225,9 +225,16 @@
     </build>
 
     <scm>
-        <url>https://github.com/laurentleseigneur/bonita-connector-email-templating</url>
+        <url>https://github.com/laurentleseigneur/${project.artifactId}</url>
         <developerConnection>scm:git:${project.scm.url}.git</developerConnection>
         <connection>scm:git:${project.scm.url}.git</connection>
         <tag>HEAD</tag>
     </scm>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>github package</name>
+            <url>https://maven.pkg.github.com/laurentleseigneur/${project.artifactId}</url>
+        </repository>
+    </distributionManagement>
 </project>
