@@ -19,7 +19,7 @@ jobs:
           java-version: 11
 
       - name: Build and test
-        run: ./mvnw clean verify -D--illegal-access=warn
+        run: ./mvnw clean spotless:check verify -D--illegal-access=warn
 
       - name: Get version from pom
         id: get-version
