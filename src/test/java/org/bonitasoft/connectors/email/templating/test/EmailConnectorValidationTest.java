@@ -46,8 +46,7 @@ public class EmailConnectorValidationTest {
     private Map<String, Object> getBasicSettings() {
         final Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("smtpHost", SMTP_HOST);
-        int smtpPort = 0;
-        parameters.put("smtpPort", smtpPort);
+        parameters.put("smtpPort", 0);
         parameters.put("to", ADDRESSJOHN);
         parameters.put("subject", SUBJECT);
         parameters.put("sslSupport", false);

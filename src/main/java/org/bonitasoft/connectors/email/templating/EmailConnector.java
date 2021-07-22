@@ -369,19 +369,19 @@ public class EmailConnector extends AbstractConnector {
 		String replyTo = (String) getInputParameter(REPLY_TO);
 
 		final String bcc = (String) getInputParameter(BCC);
-		final String subject = (String) getInputParameter(SUBJECT);
 		final String charset = (String) getInputParameter(CHARSET, "UTF-8");
 		@SuppressWarnings("unchecked") final List<Object> attachments = (List<Object>) getInputParameter(ATTACHMENTS);
 		final String messageTemplate = (String) getInputParameter(MESSAGE_TEMPLATE, "");
 		List<List<Object>> replacements = (List<List<Object>>) getInputParameter(REPLACEMENTS);
 
+		final String subject;
 		final String message;
 		try {
+			subject = applyReplacements((String) getInputParameter(SUBJECT),replacements);
 			message = applyReplacements(messageTemplate, replacements);
 		} catch (ParseException e) {
 			throw new ConnectorException(e.getMessage(), e.getCause());
 		}
-
 
 		final boolean html = (Boolean) getInputParameter(HTML, true);
 		mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to, false));

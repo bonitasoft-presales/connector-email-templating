@@ -8,13 +8,14 @@
     </parent>
 
     <artifactId>bonita-connector-email-templating</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.1.0-SNAPSHOT</version>
 
     <properties>
-        <bonita.engine.version>7.10.1</bonita.engine.version>
+        <bonita.engine.version>7.12.2</bonita.engine.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
     </properties>
 
     <dependencyManagement>
@@ -162,9 +163,9 @@
     </build>
 
     <scm>
-        <developerConnection>scm:git:git@github.com:laurentleseigneur/bonita-connector-email.git</developerConnection>
-        <connection>scm:git:git@github.com:laurentleseigneur/bonita-connector-email.git</connection>
-        <url>https://github.com/laurentleseigneur/bonita-connector-email</url>
+        <url>https://github.com/laurentleseigneur/bonita-connector-email-templating</url>
+        <developerConnection>scm:git:${project.scm.url}.git</developerConnection>
+        <connection>scm:git:${project.scm.url}.git</connection>
         <tag>HEAD</tag>
     </scm>
 </project>

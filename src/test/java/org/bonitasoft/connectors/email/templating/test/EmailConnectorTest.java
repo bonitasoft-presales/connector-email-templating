@@ -13,32 +13,6 @@
  **/
 package org.bonitasoft.connectors.email.templating.test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assume.assumeNotNull;
-import static org.mockito.Mockito.when;
-
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.mail.BodyPart;
-import javax.mail.MessagingException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-import javax.mail.internet.MimeUtility;
-
 import org.apache.commons.io.IOUtils;
 import org.bonitasoft.connectors.email.templating.EmailConnector;
 import org.bonitasoft.engine.api.APIAccessor;
@@ -57,16 +31,32 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.subethamail.wiser.Wiser;
 import org.subethamail.wiser.WiserMessage;
 
-// import org.bonitasoft.engine.test.annotation.Cover;
-// import org.bonitasoft.engine.test.annotation.Cover.BPMNConcept;
+import javax.mail.BodyPart;
+import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.mail.internet.MimeUtility;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-/**
- * @author Matthieu Chaffotte
- */
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.bonitasoft.connectors.email.templating.EmailConnector.*;
+import static org.junit.Assert.*;
+import static org.junit.Assume.assumeNotNull;
+import static org.mockito.Mockito.when;
+
 @RunWith(MockitoJUnitRunner.class)
 public class EmailConnectorTest {
 
-    private static final String SMTP_HOST = "localhost";
+    private static final String LOCALHOST = "localhost";
 
     private static final String ADDRESSJOHN = "john.doe@bonita.org";
 
@@ -74,11 +64,11 @@ public class EmailConnectorTest {
 
     private static final String ADDRESSMARK = "mark.hunt@wahoo.nz";
 
-    private static final String SUBJECT = "Testing EmailConnector";
+    private static final String MAIL_SUBJECT = "Testing EmailConnector";
 
-    private static final String PLAINMESSAGE = "Plain Message";
+    private static final String PLAIN_MESSAGE = "Plain Message";
 
-    private static final String HTMLMESSAGE = "<b><i>HTML<i/> Message</b>";
+    private static final String HTML_MESSAGE = "<b><i>HTML<i/> Message</b>";
 
     private static final String TEXT_PLAIN = "text/plain";
 
@@ -159,10 +149,10 @@ public class EmailConnectorTest {
 
     private Map<String, Object> getBasicSettings() {
         final Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("smtpHost", SMTP_HOST);
+        parameters.put("smtpHost", LOCALHOST);
         parameters.put("smtpPort", smtpPort);
         parameters.put("to", ADDRESSJOHN);
-        parameters.put("subject", SUBJECT);
+        parameters.put("subject", MAIL_SUBJECT);
         parameters.put("sslSupport", false);
         parameters.put("html", false);
         return parameters;
@@ -179,7 +169,7 @@ public class EmailConnectorTest {
         assertNotNull(message.getEnvelopeSender());
         assertEquals(ADDRESSJOHN, message.getEnvelopeReceiver());
         final MimeMessage mime = message.getMimeMessage();
-        assertEquals(SUBJECT, mime.getSubject());
+        assertEquals(MAIL_SUBJECT, mime.getSubject());
         assertEquals(0, mime.getSize());
     }
 
@@ -196,7 +186,7 @@ public class EmailConnectorTest {
         assertEquals(ADDRESSMARK, message.getEnvelopeSender());
         assertEquals(ADDRESSJOHN, message.getEnvelopeReceiver());
         final MimeMessage mime = message.getMimeMessage();
-        assertEquals(SUBJECT, mime.getSubject());
+        assertEquals(MAIL_SUBJECT, mime.getSubject());
         assertEquals(0, mime.getSize());
     }
 
@@ -214,7 +204,7 @@ public class EmailConnectorTest {
         assertNotNull(message.getEnvelopeSender());
         assertEquals(ADDRESSJOHN, message.getEnvelopeReceiver());
         final MimeMessage mime = message.getMimeMessage();
-        assertEquals(SUBJECT, mime.getSubject());
+        assertEquals(MAIL_SUBJECT, mime.getSubject());
         assertEquals(0, mime.getSize());
     }
 
@@ -243,14 +233,14 @@ public class EmailConnectorTest {
         assertEquals(ADDRESSMARK, message.getEnvelopeSender());
         assertEquals(ADDRESSJOHN, message.getEnvelopeReceiver());
         MimeMessage mime = message.getMimeMessage();
-        assertEquals(SUBJECT, mime.getSubject());
+        assertEquals(MAIL_SUBJECT, mime.getSubject());
         assertEquals(0, mime.getSize());
 
         message = messages.get(1);
         assertEquals(ADDRESSMARK, message.getEnvelopeSender());
         assertEquals(ADDRESSPATTY, message.getEnvelopeReceiver());
         mime = message.getMimeMessage();
-        assertEquals(SUBJECT, mime.getSubject());
+        assertEquals(MAIL_SUBJECT, mime.getSubject());
         assertEquals(0, mime.getSize());
     }
 
@@ -267,14 +257,14 @@ public class EmailConnectorTest {
         assertEquals(ADDRESSMARK, message.getEnvelopeSender());
         assertEquals(ADDRESSJOHN, message.getEnvelopeReceiver());
         MimeMessage mime = message.getMimeMessage();
-        assertEquals(SUBJECT, mime.getSubject());
+        assertEquals(MAIL_SUBJECT, mime.getSubject());
         assertEquals(0, mime.getSize());
 
         message = messages.get(1);
         assertEquals(ADDRESSMARK, message.getEnvelopeSender());
         assertEquals(ADDRESSPATTY, message.getEnvelopeReceiver());
         mime = message.getMimeMessage();
-        assertEquals(SUBJECT, mime.getSubject());
+        assertEquals(MAIL_SUBJECT, mime.getSubject());
         assertEquals(0, mime.getSize());
 
         parameters.put("cc", ADDRESSPATTY + ", " + ADDRESSMARK);
@@ -285,10 +275,10 @@ public class EmailConnectorTest {
         assertEquals(ADDRESSMARK, message.getEnvelopeSender());
         assertEquals(ADDRESSMARK, message.getEnvelopeReceiver());
         mime = message.getMimeMessage();
-        assertEquals(SUBJECT, mime.getSubject());
+        assertEquals(MAIL_SUBJECT, mime.getSubject());
         assertEquals(0, mime.getSize());
     }
-    
+
     @Test
     public void sendEmailWithReturnPathAddress() throws Exception {
         final Map<String, Object> parameters = getBasicSettings();
@@ -307,7 +297,7 @@ public class EmailConnectorTest {
     @Test
     public void sendEmailWithPlainMessage() throws Exception {
         final Map<String, Object> parameters = getBasicSettings();
-        parameters.put("messageTemplate", PLAINMESSAGE);
+        parameters.put("messageTemplate", PLAIN_MESSAGE);
         parameters.put("from", ADDRESSMARK);
         executeConnector(parameters);
 
@@ -317,9 +307,9 @@ public class EmailConnectorTest {
         assertEquals(ADDRESSMARK, message.getEnvelopeSender());
         assertEquals(ADDRESSJOHN, message.getEnvelopeReceiver());
         final MimeMessage mime = message.getMimeMessage();
-        assertEquals(SUBJECT, mime.getSubject());
+        assertEquals(MAIL_SUBJECT, mime.getSubject());
         assertTrue(mime.getContentType().contains(TEXT_PLAIN));
-        assertEquals(PLAINMESSAGE, mime.getContent());
+        assertEquals(PLAIN_MESSAGE, mime.getContent());
     }
 
     @Test
@@ -342,7 +332,7 @@ public class EmailConnectorTest {
         assertEquals(ADDRESSMARK, message.getEnvelopeSender());
         assertEquals(ADDRESSJOHN, message.getEnvelopeReceiver());
         final MimeMessage mime = message.getMimeMessage();
-        assertEquals(SUBJECT, mime.getSubject());
+        assertEquals(MAIL_SUBJECT, mime.getSubject());
         assertTrue(mime.getContentType().contains(TEXT_PLAIN));
         assertEquals("Dear Walter Bates", mime.getContent());
     }
@@ -367,7 +357,7 @@ public class EmailConnectorTest {
         assertEquals(ADDRESSMARK, message.getEnvelopeSender());
         assertEquals(ADDRESSJOHN, message.getEnvelopeReceiver());
         final MimeMessage mime = message.getMimeMessage();
-        assertEquals(SUBJECT, mime.getSubject());
+        assertEquals(MAIL_SUBJECT, mime.getSubject());
         assertTrue(mime.getContentType().contains(TEXT_PLAIN));
         assertEquals("Dear ", mime.getContent());
     }
@@ -392,15 +382,16 @@ public class EmailConnectorTest {
         assertEquals(ADDRESSMARK, message.getEnvelopeSender());
         assertEquals(ADDRESSJOHN, message.getEnvelopeReceiver());
         final MimeMessage mime = message.getMimeMessage();
-        assertEquals(SUBJECT, mime.getSubject());
+        assertEquals(MAIL_SUBJECT, mime.getSubject());
         assertTrue(mime.getContentType().contains(TEXT_HTML));
         assertEquals("<p>Dear Walter Bates</p>", mime.getContent());
     }
+
     @Test
     public void sendEmailWithHtmlMessage() throws Exception {
         final Map<String, Object> parameters = getBasicSettings();
         parameters.put("html", true);
-        parameters.put("messageTemplate", HTMLMESSAGE);
+        parameters.put("messageTemplate", HTML_MESSAGE);
         parameters.put("from", ADDRESSMARK);
         executeConnector(parameters);
 
@@ -410,9 +401,9 @@ public class EmailConnectorTest {
         assertEquals(ADDRESSMARK, message.getEnvelopeSender());
         assertEquals(ADDRESSJOHN, message.getEnvelopeReceiver());
         final MimeMessage mime = message.getMimeMessage();
-        assertEquals(SUBJECT, mime.getSubject());
+        assertEquals(MAIL_SUBJECT, mime.getSubject());
         assertTrue(mime.getContentType().contains(TEXT_HTML));
-        assertEquals(HTMLMESSAGE, mime.getContent());
+        assertEquals(HTML_MESSAGE, mime.getContent());
     }
 
     @Test
@@ -465,7 +456,7 @@ public class EmailConnectorTest {
         assertEquals("alice@bob.charly", message.getEnvelopeSender());
         assertEquals(ADDRESSJOHN, message.getEnvelopeReceiver());
         final MimeMessage mime = message.getMimeMessage();
-        assertEquals(SUBJECT, mime.getSubject());
+        assertEquals(MAIL_SUBJECT, mime.getSubject());
         assertEquals(0, mime.getSize());
         assertEquals("Bonita Mailer", mime.getHeader("X-Mailer", ""));
         assertEquals("2 (High)", mime.getHeader("X-Priority", ""));
@@ -506,7 +497,7 @@ public class EmailConnectorTest {
         assertNotNull(message.getEnvelopeSender());
         assertEquals(ADDRESSJOHN, message.getEnvelopeReceiver());
         final MimeMessage mime = message.getMimeMessage();
-        assertEquals(SUBJECT, mime.getSubject());
+        assertEquals(MAIL_SUBJECT, mime.getSubject());
         assertTrue(mime.getContentType().contains(TEXT_PLAIN));
         assertEquals("? ? ?", mime.getContent());
     }
@@ -538,7 +529,7 @@ public class EmailConnectorTest {
         // BS-11239 : change multipart mime type in order to have attachments openable on iPhone
         assertThat(messages.get(0).getMimeMessage().getContentType()).startsWith("multipart/mixed;");
     }
-    
+
     @Test
     public void sendFileDocumentWithSpecialEncoding() throws BonitaException, MessagingException, IOException {
         DocumentImpl document = new DocumentImpl();
@@ -569,7 +560,7 @@ public class EmailConnectorTest {
     public void sendWithDocumentList() throws BonitaException, MessagingException, IOException {
         DocumentImpl document1 = createDocument(1L, "toto1");
         DocumentImpl document2 = createDocument(2L, "toto2");
-        List<Document> documents = Arrays.<Document> asList(document1, document2);
+        List<Document> documents = Arrays.<Document>asList(document1, document2);
         Map<String, Object> parameters = getBasicSettings();
         parameters.put(EmailConnector.ATTACHMENTS, documents);
 
@@ -588,8 +579,8 @@ public class EmailConnectorTest {
         DocumentImpl document2 = createDocument(2L, "toto2");
         DocumentImpl document3 = createDocument(3L, "toto3");
         DocumentImpl document4 = createDocument(4L, "toto4");
-        List<Document> documents1 = Arrays.<Document> asList(document1, document2);
-        List<Document> documents2 = Arrays.<Document> asList(document3, document4);
+        List<Document> documents1 = Arrays.<Document>asList(document1, document2);
+        List<Document> documents2 = Arrays.<Document>asList(document3, document4);
         List lists = Arrays.asList(documents1, documents2);
         Map<String, Object> parameters = getBasicSettings();
         parameters.put(EmailConnector.ATTACHMENTS, lists);
@@ -604,8 +595,7 @@ public class EmailConnectorTest {
         assertThat(new String(contents.get(3))).isEqualTo("toto3");
         assertThat(new String(contents.get(4))).isEqualTo("toto4");
     }
-    
-    
+
 
     private List<byte[]> getAttachmentsContent(MimeMultipart multipart) throws MessagingException, IOException {
         List<byte[]> attachments = new ArrayList<byte[]>();
@@ -644,7 +634,7 @@ public class EmailConnectorTest {
         when(engineExecutionContext.getProcessInstanceId()).thenReturn(1L);
         when(processAPI.getLastDocument(1L, "Document1")).thenReturn(document);
         Map<String, Object> parameters = getBasicSettings();
-        parameters.put(EmailConnector.MESSAGE_TEMPLATE, "Hello Mr message\n This is an email content");
+        parameters.put(MESSAGE_TEMPLATE, "Hello Mr message\n This is an email content");
         List<String> attachments = Collections.singletonList("Document1");
         parameters.put(EmailConnector.ATTACHMENTS, attachments);
 
@@ -666,7 +656,7 @@ public class EmailConnectorTest {
         when(engineExecutionContext.getProcessInstanceId()).thenReturn(1L);
         when(processAPI.getLastDocument(1L, "Document1")).thenReturn(document);
         Map<String, Object> parameters = getBasicSettings();
-        parameters.put(EmailConnector.MESSAGE_TEMPLATE, "Hello Mr message\n This is an email content");
+        parameters.put(MESSAGE_TEMPLATE, "Hello Mr message\n This is an email content");
         List<String> attachments = Collections.singletonList("Document1");
         parameters.put(EmailConnector.ATTACHMENTS, attachments);
 
@@ -678,4 +668,25 @@ public class EmailConnectorTest {
 
     }
 
+    @Test
+    public void shouldReplaceSubject() throws BonitaException, MessagingException, IOException {
+
+        when(engineExecutionContext.getProcessInstanceId()).thenReturn(1L);
+        Map<String, Object> parameters = getBasicSettings();
+        parameters.put(SUBJECT, "your case ${caseId}");
+        parameters.put(HTML, true);
+        parameters.put(MESSAGE_TEMPLATE, "<p>Dear ${customer}</p>");
+        List<List<Object>> replacements = new ArrayList<List<Object>>();
+        replacements.add(Arrays.asList("customer", (Object) "Walter Bates"));
+        replacements.add(Arrays.asList("caseId", (Object) 123456L));
+        parameters.put(REPLACEMENTS, replacements);
+
+        executeConnector(parameters);
+
+        List<WiserMessage> messages = server.getMessages();
+        assumeNotNull(messages);
+        assertThat(messages.get(0).getMimeMessage().getContent()).isEqualTo("<p>Dear Walter Bates</p>");
+        assertThat (messages.get(0).getMimeMessage().getSubject()).isEqualTo("your case 123456");
+
+    }
 }
