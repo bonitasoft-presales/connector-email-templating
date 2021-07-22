@@ -17,6 +17,7 @@ jobs:
         uses: actions/setup-java@v1.4.3
         with:
           java-version: 11
+          server-id: github
 
       - name: Build and test
         run: ./mvnw clean spotless:check verify -D--illegal-access=warn
