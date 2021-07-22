@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -142,6 +143,11 @@
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>3.0.0-M1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
                     <version>2.5.3</version>
                     <configuration>
@@ -163,10 +169,10 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.8.0</version>
                     <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <testSource>1.8</testSource>
-                    <testTarget>1.8</testTarget>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                        <testSource>1.8</testSource>
+                        <testTarget>1.8</testTarget>
                     </configuration>
                 </plugin>
             </plugins>
@@ -213,11 +219,11 @@
                     <!-- define a language-specific format -->
                     <java>
                         <!-- no need to specify files, inferred automatically, but you can if you want -->
-                        <importOrder /> <!-- standard import order -->
+                        <importOrder/> <!-- standard import order -->
 
-                        <removeUnusedImports /> <!-- self-explanatory -->
+                        <removeUnusedImports/> <!-- self-explanatory -->
 
-                        <googleJavaFormat />
+                        <googleJavaFormat/>
                     </java>
                 </configuration>
             </plugin>
