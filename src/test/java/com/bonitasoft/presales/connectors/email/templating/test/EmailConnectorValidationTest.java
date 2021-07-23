@@ -1,11 +1,10 @@
 package com.bonitasoft.presales.connectors.email.templating.test;
 
+import com.bonitasoft.presales.connectors.email.templating.EmailConnector;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.bonitasoft.presales.connectors.email.templating.EmailConnector;
 import org.bonitasoft.engine.connector.ConnectorValidationException;
 import org.bonitasoft.engine.exception.BonitaException;
 import org.junit.Test;

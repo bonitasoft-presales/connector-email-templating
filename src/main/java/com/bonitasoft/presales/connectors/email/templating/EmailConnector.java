@@ -157,10 +157,10 @@ public class EmailConnector extends AbstractConnector {
 
   private void logInputParameters() {
     logInputParameter(CHARSET);
+    logInputParameter(SUBJECT);
     logInputParameter(MESSAGE_TEMPLATE);
     logInputReplacementParameter(REPLACEMENTS);
     logInputParameter(HTML);
-    logInputParameter(SUBJECT);
     logInputParameter(BCC);
     logInputParameter(CC);
     logInputParameter(TO);

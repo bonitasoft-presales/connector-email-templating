@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import static org.junit.Assume.assumeNotNull;
 import static org.mockito.Mockito.when;
 
+import com.bonitasoft.presales.connectors.email.templating.EmailConnector;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.ArrayList;
@@ -20,8 +21,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.MimeUtility;
-
-import com.bonitasoft.presales.connectors.email.templating.EmailConnector;
 import org.apache.commons.io.IOUtils;
 import org.bonitasoft.engine.api.APIAccessor;
 import org.bonitasoft.engine.api.ProcessAPI;
