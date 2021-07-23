@@ -1,7 +1,6 @@
-package org.bonitasoft.connectors.email.templating.test;
+package com.bonitasoft.presales.connectors.email.templating.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.bonitasoft.connectors.email.templating.EmailConnector.*;
 import static org.junit.Assert.*;
 import static org.junit.Assume.assumeNotNull;
 import static org.mockito.Mockito.when;
@@ -21,8 +20,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.MimeUtility;
+
+import com.bonitasoft.presales.connectors.email.templating.EmailConnector;
 import org.apache.commons.io.IOUtils;
-import org.bonitasoft.connectors.email.templating.EmailConnector;
 import org.bonitasoft.engine.api.APIAccessor;
 import org.bonitasoft.engine.api.ProcessAPI;
 import org.bonitasoft.engine.bpm.document.Document;
@@ -629,7 +629,7 @@ public class EmailConnectorTest {
     when(engineExecutionContext.getProcessInstanceId()).thenReturn(1L);
     when(processAPI.getLastDocument(1L, "Document1")).thenReturn(document);
     Map<String, Object> parameters = getBasicSettings();
-    parameters.put(MESSAGE_TEMPLATE, "Hello Mr message\n This is an email content");
+    parameters.put(EmailConnector.MESSAGE_TEMPLATE, "Hello Mr message\n This is an email content");
     List<String> attachments = Collections.singletonList("Document1");
     parameters.put(EmailConnector.ATTACHMENTS, attachments);
 
@@ -656,7 +656,7 @@ public class EmailConnectorTest {
     when(engineExecutionContext.getProcessInstanceId()).thenReturn(1L);
     when(processAPI.getLastDocument(1L, "Document1")).thenReturn(document);
     Map<String, Object> parameters = getBasicSettings();
-    parameters.put(MESSAGE_TEMPLATE, "Hello Mr message\n This is an email content");
+    parameters.put(EmailConnector.MESSAGE_TEMPLATE, "Hello Mr message\n This is an email content");
     List<String> attachments = Collections.singletonList("Document1");
     parameters.put(EmailConnector.ATTACHMENTS, attachments);
 
@@ -675,13 +675,13 @@ public class EmailConnectorTest {
   @Test
   public void shouldReplaceSubject() throws BonitaException, MessagingException, IOException {
     Map<String, Object> parameters = getBasicSettings();
-    parameters.put(SUBJECT, "your case ${caseId}");
-    parameters.put(HTML, true);
-    parameters.put(MESSAGE_TEMPLATE, "<p>Dear ${customer}</p>");
+    parameters.put(EmailConnector.SUBJECT, "your case ${caseId}");
+    parameters.put(EmailConnector.HTML, true);
+    parameters.put(EmailConnector.MESSAGE_TEMPLATE, "<p>Dear ${customer}</p>");
     List<List<Object>> replacements = new ArrayList<List<Object>>();
     replacements.add(Arrays.asList("customer", (Object) "Walter Bates"));
     replacements.add(Arrays.asList("caseId", (Object) 123456L));
-    parameters.put(REPLACEMENTS, replacements);
+    parameters.put(EmailConnector.REPLACEMENTS, replacements);
 
     executeConnector(parameters);
 
