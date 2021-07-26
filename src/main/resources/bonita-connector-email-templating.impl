@@ -6,7 +6,7 @@
 	<definitionVersion>1.1.0</definitionVersion>
     <description>Implementation based on javax.mail 1.4.7</description>
 	<implementationClassname>com.bonitasoft.presales.connectors.email.templating.EmailConnector</implementationClassname>
-	<implementationId>email-templating-impl</implementationId>
+	<implementationId>bonita-connector-email-templating-impl</implementationId>
 	<implementationVersion>$implementation.version$</implementationVersion>
 
 $Dependencies$
