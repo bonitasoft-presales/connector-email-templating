@@ -9,7 +9,6 @@ import org.bonitasoft.engine.connector.ConnectorValidationException;
 import org.bonitasoft.engine.exception.BonitaException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-// import org.junit.Test;
 
 public class EmailConnectorValidationTest {
 
@@ -58,7 +57,6 @@ public class EmailConnectorValidationTest {
     validateConnector(parameters);
   }
 
-  //  @Test( expected = ConnectorValidationException.class)
   @Test
   public void thowsExceptionDueToInvalidEmailAddressFrom() throws ConnectorValidationException {
     Assertions.assertThrows(
@@ -222,106 +220,4 @@ public class EmailConnectorValidationTest {
     parameters.put("subject", SUBJECT);
     validateConnector(parameters);
   }
-
-  //
-  // public void testSetNullSsl() throws BonitaException {
-  // email = getBasicSettings();
-  // email.setSslSupport(null);
-  // assertTrue(email.validate().isEmpty());
-  // assertFalse(email.isSslSupport());
-  // email = null;
-  // }
-  //
-  // public void testSetSsl() {
-  // email = getBasicSettings();
-  // email.setSslSupport(new Boolean("true"));
-  // assertTrue(email.isSslSupport());
-  // email.setSslSupport(new Boolean("True"));
-  // assertTrue(email.isSslSupport());
-  // email.setSslSupport(new Boolean(""));
-  // assertFalse(email.isSslSupport());
-  // email.setSslSupport(new Boolean("false"));
-  // assertFalse(email.isSslSupport());
-  // email.setSslSupport(new Boolean("whatIwant"));
-  // assertFalse(email.isSslSupport());
-  // }
-  //
-  // public void testSetNullStarttlsSupport() throws BonitaException {
-  // email = getBasicSettings();
-  // email.setStarttlsSupport(null);
-  // assertTrue(email.validate().isEmpty());
-  // assertFalse(email.isSslSupport());
-  // email = null;
-  // }
-  //
-  // public void testSetNullAttachments() throws BonitaException {
-  // email = getBasicSettings();
-  // final List<Object> attachments = null;
-  // email.setAttachments(attachments);
-  // assertTrue(email.validate().isEmpty());
-  // assertTrue(email.getAttachments().isEmpty());
-  // email = null;
-  // }
-  //
-  // public void testSetAttachments() {
-  // email = getBasicSettings();
-  // final List<Object> attachments = new ArrayList<Object>();
-  // attachments.add("../test/test0.xml");
-  // attachments.add("../test/test1.xml");
-  // attachments.add("../test/test2.xml");
-  // email.setAttachments(attachments);
-  // assertNotNull(email.getAttachments());
-  // assertEquals(3, email.getAttachments().size());
-  // email = null;
-  // }
-  //
-  // public void testSetTwiceAttachments() {
-  // email = getBasicSettings();
-  // final List<Object> attachments = new ArrayList<Object>();
-  // attachments.add("../test/test0.xml");
-  // attachments.add("../test/test1.xml");
-  // attachments.add("../test/test2.xml");
-  // email.setAttachments(attachments);
-  // assertNotNull(email.getAttachments());
-  // assertEquals(3, email.getAttachments().size());
-  // attachments.clear();
-  // email.setAttachments(attachments);
-  // assertNotNull(email.getAttachments());
-  // assertTrue(email.getAttachments().isEmpty());
-  // }
-  // public void testSetNullImages() throws BonitaException {
-  // email = getBasicSettings();
-  // final Map<String, String> images = null;
-  // email.setImages(images);
-  // assertTrue(email.validate().isEmpty());
-  // assertTrue(email.getImages().isEmpty());
-  // email = null;
-  // }
-  //
-  // public void testSetImagesWithAnEmptyString() throws BonitaException {
-  // email = getBasicSettings();
-  // final Map<String, String> images = new HashMap<String, String>();
-  // email.setImages(images);
-  // assertTrue(email.validate().isEmpty());
-  // assertTrue(email.getImages().isEmpty());
-  // email = null;
-  // }
-  //
-  // public void testSetImagesTwice() throws BonitaException {
-  // email = getBasicSettings();
-  // final Map<String, String> firstSet = new HashMap<String, String>();
-  // firstSet.put("path_one", "firstAlias");
-  // firstSet.put("path_two", "secondAlias");
-  // firstSet.put("path_three", "thirdAlias");
-  // email.setImages(firstSet);
-  // assertTrue(email.validate().isEmpty());
-  // assertEquals(firstSet, email.getImages());
-  // final Map<String, String> secondSet = new HashMap<String, String>();
-  // secondSet.put("path1", "Alias A");
-  // secondSet.put("path2", "Alias B");
-  // email.setImages(secondSet);
-  // assertTrue(email.validate().isEmpty());
-  // assertEquals(secondSet, email.getImages());
-  // }
-
 }
