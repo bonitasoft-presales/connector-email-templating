@@ -57,7 +57,7 @@ public class EmailConnectorValidationTest {
   }
 
   @Test
-  public void thowsExceptionDueToInvalidEmailAddressFrom()  {
+  public void thowsExceptionDueToInvalidEmailAddressFrom() {
     Assertions.assertThrows(
         ConnectorValidationException.class,
         () -> {
@@ -68,7 +68,7 @@ public class EmailConnectorValidationTest {
   }
 
   @Test
-  public void thowsExceptionDueToNoRecipientAddress()  {
+  public void thowsExceptionDueToNoRecipientAddress() {
     Assertions.assertThrows(
         ConnectorValidationException.class,
         () -> {
@@ -141,7 +141,7 @@ public class EmailConnectorValidationTest {
   }
 
   @Test
-  public void throwsExceptionWhenSmtpHostIsNull()  {
+  public void throwsExceptionWhenSmtpHostIsNull() {
     Assertions.assertThrows(
         ConnectorValidationException.class,
         () -> {
