@@ -97,6 +97,7 @@ public class EmailConnector extends AbstractConnector {
 
   /** The name or the IP address of the SMTP server. */
   public static final String SMTP_HOST = "smtpHost";
+  public static final String TLSV_1_2 = "TLSv1.2";
 
   private Logger LOGGER = Logger.getLogger(this.getClass().getName());
 
@@ -251,6 +252,7 @@ public class EmailConnector extends AbstractConnector {
       properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
       properties.put("mail.smtp.socketFactory.fallback", "false");
       properties.put("mail.smtp.socketFactory.port", smtpPort);
+      properties.put("mail.smtp.ssl.protocols", TLSV_1_2);
     }
     Session session;
     final String username = (String) getInputParameter(USER_NAME);
