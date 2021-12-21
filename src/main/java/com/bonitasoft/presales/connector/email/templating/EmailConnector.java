@@ -1,4 +1,4 @@
-package com.bonitasoft.presales.connectors.email.templating;
+package com.bonitasoft.presales.connector.email.templating;
 
 import java.io.StringReader;
 import java.io.StringWriter;

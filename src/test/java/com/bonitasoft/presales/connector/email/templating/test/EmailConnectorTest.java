@@ -1,9 +1,9 @@
-package com.bonitasoft.presales.connectors.email.templating.test;
+package com.bonitasoft.presales.connector.email.templating.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
-import com.bonitasoft.presales.connectors.email.templating.EmailConnector;
+import com.bonitasoft.presales.connector.email.templating.EmailConnector;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.ArrayList;

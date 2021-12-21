@@ -21,7 +21,7 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
         <!-- Connector -->
-        <connector-definition-id>email-templating</connector-definition-id>
+        <connector-definition-id>connector-email-templating</connector-definition-id>
         <connector-definition-version>1.1.0</connector-definition-version>
         <connector-impl-id>${connector-definition-id}-impl</connector-impl-id>
         <connector-impl-version>${project.version}</connector-impl-version>
