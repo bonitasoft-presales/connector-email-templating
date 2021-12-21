@@ -1,6 +1,6 @@
-package com.bonitasoft.presales.connectors.email.templating.test;
+package com.bonitasoft.presales.connector.email.templating.test;
 
-import com.bonitasoft.presales.connectors.email.templating.EmailConnector;
+import com.bonitasoft.presales.connector.email.templating.EmailConnector;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
