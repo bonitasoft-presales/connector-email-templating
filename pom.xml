@@ -27,7 +27,7 @@
         <connector-main-class>${project.groupId}.email.templating.EmailConnector</connector-main-class>
 
         <!-- Versions -->
-        <javax-mail.version>1.4.7</javax-mail.version>
+        <jakarta.mail.version>1.6.7</jakarta.mail.version>
         <javax-activation.version>1.1</javax-activation.version>
         <junit-jupiter-engine.version>5.7.2</junit-jupiter-engine.version>
         <junit.version>4.11</junit.version>
@@ -63,9 +63,9 @@
                 <version>${javax-activation.version}</version>
             </dependency>
             <dependency>
-                <groupId>javax.mail</groupId>
-                <artifactId>mail</artifactId>
-                <version>${javax-mail.version}</version>
+                <groupId>com.sun.mail</groupId>
+                <artifactId>jakarta.mail</artifactId>
+                <version>${jakarta.mail.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.velocity</groupId>
@@ -111,9 +111,9 @@
             <groupId>org.bonitasoft.engine</groupId>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>mail</artifactId>
+         <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>jakarta.mail</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.velocity</groupId>
@@ -121,13 +121,6 @@
         </dependency>
 
         <!-- Tests -->
-        <dependency>
-            <groupId>org.bonitasoft.engine</groupId>
-            <artifactId>bonita-engine</artifactId>
-            <version>${bonita.engine.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
@@ -281,6 +274,7 @@
                 <artifactId>dependency-check-maven</artifactId>
                 <version>6.5.0</version>
                 <configuration>
+                    <skipProvidedScope>true</skipProvidedScope>
                     <failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability>
                 </configuration>
                 <executions>
